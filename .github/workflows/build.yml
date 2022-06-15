@@ -542,7 +542,9 @@ jobs:
 
       - if: ${{ env.isWindows == 'true' }}
         name: "Link mirai-core for mingwX64"
-        run: ./gradlew mirai-core:linkReleaseTestMingwX64 "--no-daemon" "--no-parallel" "-Porg.gradle.logging.level=quiet" "-Porg.gradle.parallel=false"
+        run: >
+          ./gradlew mirai-core:linkReleaseTestMingwX64 "--no-daemon" "--no-parallel" "-Porg.gradle.logging.level=quiet" "-Porg.gradle.parallel=false" 
+          "-Dorg.gradle.jvmargs=-Xmx3000m -Dfile.encoding=UTF-8 --illegal-access=permit -Dkotlin.daemon.jvm.options=--illegal-access=permit --add-opens java.base/java.util=ALL-UNNAMED"
 
       - if: ${{ env.isWindows == 'true' }}
         name: "Test mirai-core for mingwX64"
