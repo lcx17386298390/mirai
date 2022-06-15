@@ -13,7 +13,8 @@ linkerOpts =                 -lcrypto \
                              -L/opt/homebrew/opt/openssl@3/lib \
                              -L/usr/lib/ \
                              -LC:/openssl/lib \
-                             -LC:/vcpkg/installed/x86-windows/lib \
+                             -LC:/vcpkg/installed/x64-windows/lib \
+                             -LC:/vcpkg/installed/x64-windows/bin \
                              \
                              -L/usr/lib64 \
                              -L/usr/lib/x86_64-linux-gnu \
@@ -33,4 +34,4 @@ compilerOpts =               -I/opt/openssl/include \
                              -I/usr/include/x86_64-linux-gnu/ \
                              -I/usr/local/include/ \
                              -IC:/openssl/include/ \
-                             -LC:/vcpkg/installed/x86-windows/include \
+                             -LC:/vcpkg/installed/x64-windows/include \
