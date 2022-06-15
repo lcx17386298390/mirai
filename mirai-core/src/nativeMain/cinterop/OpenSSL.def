@@ -14,7 +14,6 @@ linkerOpts =                 -lcrypto \
                              -L/usr/lib/ \
                              -LC:/openssl/lib \
                              -LC:/vcpkg/installed/x64-windows/lib \
-                             -LC:/vcpkg/installed/x64-windows/bin \
                              -LC:/vcpkg/packages/curl_x64-windows/lib \
                              -LC:/vcpkg/packages/openssl_x64-windows/lib \
                              \
