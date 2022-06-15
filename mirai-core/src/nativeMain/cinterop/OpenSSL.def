@@ -36,6 +36,6 @@ compilerOpts =               -I/opt/openssl/include \
                              -I/usr/include/x86_64-linux-gnu/ \
                              -I/usr/local/include/ \
                              -IC:/openssl/include/ \
-                             -LC:/vcpkg/installed/x64-windows/include \
-                             -LC:/vcpkg/packages/curl_x64-windows/include \
-                             -LC:/vcpkg/packages/openssl_x64-windows/include \
+                             -IC:/vcpkg/installed/x64-windows/include \
+                             -IC:/vcpkg/packages/curl_x64-windows/include \
+                             -IC:/vcpkg/packages/openssl_x64-windows/include \
