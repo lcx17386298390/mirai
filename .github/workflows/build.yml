@@ -351,6 +351,30 @@ jobs:
           nmake install
         shell: cmd
 
+      - if: ${{ env.isWindows == 'true' }}
+        name: inspect
+        run: "cd C:/openssl && dir"
+        shell: cmd
+        continue-on-error: true
+
+      - if: ${{ env.isWindows == 'true' }}
+        name: inspect
+        run: "cd C:/openssl/ssl && dir"
+        shell: cmd
+        continue-on-error: true
+
+      - if: ${{ env.isWindows == 'true' }}
+        name: inspect
+        run: "cd C:/openssl/lib && dir"
+        shell: cmd
+        continue-on-error: true
+
+      - if: ${{ env.isWindows == 'true' }}
+        name: inspect
+        run: "cd C:/openssl/include && dir"
+        shell: cmd
+        continue-on-error: true
+
       #      - if: ${{ env.isWindows == 'true' }}
       #        name: Install OpenSSL install_sw
       #        run: >
