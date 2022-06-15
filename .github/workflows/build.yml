@@ -768,6 +768,11 @@ jobs:
         run: ./gradlew :mirai-core:macosX64Test ${{ env.gradleArgs }}
 
 
+      - if: ${{ env.isUnix == 'true' }}
+        name: "Kill Java"
+        run: sudo killall java
+        continue-on-error: true
+
       - if: ${{ env.isWindows == 'true' }}
         name: "Compile mirai-core for mingwX64"
         run: ./gradlew :mirai-core:compileKotlinMingwX64 :mirai-core:compileTestKotlinMingwX64 ${{ env.gradleArgs }}
