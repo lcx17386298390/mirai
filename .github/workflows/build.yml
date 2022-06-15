@@ -295,7 +295,7 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: 'adopt-openj9'
-          java-version: '17'
+          java-version: '16'
 
       - if: ${{ env.isUnix == 'true' }}
         run: chmod -R 777 *
