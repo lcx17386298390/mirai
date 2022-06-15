@@ -421,13 +421,13 @@ fun Project.disableCrossCompile() {
 }
 
 private fun disableTargetLink(project: Project, target: String) {
-    project.tasks.getByName("linkDebugTest${target.titlecase()}").enabled = false
+    project.tasks.findByName("linkDebugTest${target.titlecase()}")?.enabled = false
     project.tasks.findByName("linkReleaseTest${target.titlecase()}")?.enabled = false
     project.tasks.findByName("linkDebugShared${target.titlecase()}")?.enabled = false
     project.tasks.findByName("linkReleaseShared${target.titlecase()}")?.enabled = false
     project.tasks.findByName("linkDebugStatic${target.titlecase()}")?.enabled = false
     project.tasks.findByName("linkReleaseStatic${target.titlecase()}")?.enabled = false
-    project.tasks.getByName("${target}Test").enabled = false
+    project.tasks.findByName("${target}Test")?.enabled = false
 }
 
 private fun Project.linkerDirs(): List<String> {
