@@ -337,11 +337,11 @@ jobs:
 
       - if: ${{ env.isWindows == 'true' }}
         name: Install OpenSSL
-        run: 'vcpkg install openssl'
+        run: 'vcpkg install openssl:x64-windows'
 
       - if: ${{ env.isWindows == 'true' }}
         name: Install cURL
-        run: 'vcpkg install curl'
+        run: 'vcpkg install curl:x64-windows'
 
       #      - if: ${{ env.isWindows == 'true' }}
       #        name: Install OpenSSL
