@@ -294,7 +294,7 @@ jobs:
 
       - uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: 'adopt-openj9'
           java-version: '17'
 
       - if: ${{ env.isUnix == 'true' }}
