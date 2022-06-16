@@ -336,12 +336,14 @@ jobs:
       # Why using no-asm: https://stackoverflow.com/questions/40007633/how-to-compile-openssl-on-windows
 
       - if: ${{ env.isWindows == 'true' }}
-        name: Install OpenSSL
-        run: 'vcpkg install openssl:x64-windows'
-
-      - if: ${{ env.isWindows == 'true' }}
-        name: Install cURL
-        run: 'vcpkg install curl:x64-windows'
+        name: Install OpenSSL & cURL
+        run: |
+          echo "set(VCPKG_BUILD_TYPE release)" | Out-File -FilePath "$env:VCPKG_INSTALLATION_ROOT\triplets\x64-windows.cmake" -Encoding utf8 -Append
+          vcpkg install openssl:x64-windows curl[core,openssl]:x64-windows
+          New-Item -Path $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib\crypto.lib -ItemType SymbolicLink -Value $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib\libcrypto.lib
+          New-Item -Path $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib\ssl.lib -ItemType SymbolicLink -Value $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib\libssl.lib
+          New-Item -Path $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib\curl.lib -ItemType SymbolicLink -Value $env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\lib\libcurl.lib
+          echo "$env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       #      - if: ${{ env.isWindows == 'true' }}
       #        name: Install OpenSSL
