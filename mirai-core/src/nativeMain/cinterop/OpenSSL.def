@@ -14,9 +14,6 @@ linkerOpts =                 -lcrypto \
                              -L/usr/lib/ \
                              -LC:/openssl/lib \
                              -LC:/vcpkg/installed/x64-windows/lib \
-                             -LC:/vcpkg/packages/curl_x64-windows/lib \
-                             -LC:/vcpkg/packages/openssl_x64-windows/lib \
-                             \
                              -L/usr/lib64 \
                              -L/usr/lib/x86_64-linux-gnu \
                              -L/opt/local/lib \
@@ -36,5 +33,3 @@ compilerOpts =               -I/opt/openssl/include \
                              -I/usr/local/include/ \
                              -IC:/openssl/include/ \
                              -IC:/vcpkg/installed/x64-windows/include \
-                             -IC:/vcpkg/packages/curl_x64-windows/include \
-                             -IC:/vcpkg/packages/openssl_x64-windows/include \
