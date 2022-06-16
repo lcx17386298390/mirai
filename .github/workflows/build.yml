@@ -445,7 +445,7 @@ jobs:
 
       - if: ${{ env.isWindows == 'true' }}
         name: "Link mirai-core-utils for mingwX64"
-        run: ./gradlew mirai-core-utils:linkReleaseTestMingwX64 ${{ env.gradleArgs }}
+        run: ./gradlew mirai-core-utils:linkDebugTestMingwX64 ${{ env.gradleArgs }}
 
       - if: ${{ env.isWindows == 'true' }}
         name: "Test mirai-core-utils for mingwX64"
@@ -496,7 +496,7 @@ jobs:
 
       - if: ${{ env.isWindows == 'true' }}
         name: "Link mirai-core-api for mingwX64"
-        run: ./gradlew mirai-core-api:linkReleaseTestMingwX64 ${{ env.gradleArgs }}
+        run: ./gradlew mirai-core-api:linkDebugTestMingwX64 ${{ env.gradleArgs }}
 
       - if: ${{ env.isWindows == 'true' }}
         name: "Test mirai-core-api for mingwX64"
@@ -577,7 +577,7 @@ jobs:
       - if: ${{ env.isWindows == 'true' }}
         name: "Link mirai-core for mingwX64"
         run: >
-          ./gradlew mirai-core:linkReleaseTestMingwX64 "--no-daemon" "--no-parallel" "-Porg.gradle.logging.level=quiet" "-Porg.gradle.parallel=false" 
+          ./gradlew mirai-core:linkDebugTestMingwX64 "--no-daemon" "--no-parallel" "-Porg.gradle.logging.level=quiet" "-Porg.gradle.parallel=false" 
           "-Dorg.gradle.jvmargs=-Xmx3000m -Dfile.encoding=UTF-8 --illegal-access=permit -Dkotlin.daemon.jvm.options=--illegal-access=permit --add-opens java.base/java.util=ALL-UNNAMED"
 
       - if: ${{ env.isWindows == 'true' }}

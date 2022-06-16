@@ -322,16 +322,16 @@ fun KotlinMultiplatformExtension.configureNativeTargetsHierarchical(
 
     WIN_TARGETS.forEach { targetName ->
         val target = targets.getByName(targetName) as KotlinNativeTarget
-        if (!IDEA_ACTIVE && HOST_KIND == HostKind.WINDOWS) {
-            // add release test to run on CI
-            project.afterEvaluate {
-                target.findOrCreateTest(NativeBuildType.RELEASE) {
-                    // use linkReleaseTestMingwX64 for mingwX64Test to save memory
-                    tasks.getByName("mingwX64Test", KotlinNativeTest::class)
-                        .executable(linkTask) { linkTask.binary.outputFile }
-                }
-            }
-        }
+//        if (!IDEA_ACTIVE && HOST_KIND == HostKind.WINDOWS) {
+//            // add release test to run on CI
+//            project.afterEvaluate {
+//                target.findOrCreateTest(NativeBuildType.RELEASE) {
+//                    // use linkReleaseTestMingwX64 for mingwX64Test to save memory
+//                    tasks.getByName("mingwX64Test", KotlinNativeTest::class)
+//                        .executable(linkTask) { linkTask.binary.outputFile }
+//                }
+//            }
+//        }
     }
 
     NATIVE_TARGETS.forEach { targetName ->
