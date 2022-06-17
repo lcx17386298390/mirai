@@ -76,14 +76,18 @@ internal open class QQAndroidBot constructor(
 
     override fun close(cause: Throwable?) {
         if (!this.isActive) return
-        runBlocking {
-            try { // this may not be very good but
-                withTimeoutOrNull(5.seconds) {
-                    components[SsoProcessor].logout(network)
+
+        if (networkInitialized) {
+            runBlocking {
+                try { // this may not be very good but
+                    withTimeoutOrNull(5.seconds) {
+                        components[SsoProcessor].logout(network)
+                    }
+                } catch (ignored: Exception) {
                 }
-            } catch (ignored: Exception) {
             }
         }
+
         super.close(cause)
     }
 
