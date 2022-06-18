@@ -121,7 +121,7 @@ internal abstract class AbstractBot constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     @Volatile
-    private var networkInitialized = false
+    protected var networkInitialized = false
     val network: NetworkHandler by lazy {
         networkInitialized = true
         createNetworkHandler()

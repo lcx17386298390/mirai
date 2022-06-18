@@ -6,7 +6,6 @@
  *
  * https://github.com/mamoe/mirai/blob/dev/LICENSE
  */
-@file:Suppress("EXPERIMENTAL_API_USAGE", "INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 
 package net.mamoe.mirai.internal
 
