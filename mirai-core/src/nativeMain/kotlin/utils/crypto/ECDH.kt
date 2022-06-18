@@ -221,6 +221,5 @@ internal actual class ECDH actual constructor(actual val keyPair: ECDHKeyPair) {
 }
 
 internal actual fun ByteArray.adjustToPublicKey(): ECDHPublicKey {
-    println("adjustToPublicKey: ${this.toUHexString()}")
     return ECDH.constructPublicKey(this)
 }

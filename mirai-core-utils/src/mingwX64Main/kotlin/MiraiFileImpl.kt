@@ -17,26 +17,21 @@ import platform.posix.*
 import platform.windows.*
 
 private fun getFullPathName(path: String): String = memScoped {
-    try {
-        println("getFullPathName")
-        ShortArray(MAX_PATH).usePinned { pin ->
-            val len = GetFullPathNameW(path, MAX_PATH, pin.addressOf(0).reinterpret(), null).toInt()
-            if (len != 0) {
-                return pin.get().toKStringFromUtf16(len)
-            } else {
-                when (val errno = errno) {
-                    ENOTDIR -> return@memScoped path
-                    EACCES -> return@memScoped path // permission denied
-                    ENOENT -> return@memScoped path // no such file
-                    else -> throw IllegalArgumentException(
-                        "Invalid path($errno): $path",
-                        cause = PosixException.forErrno(posixFunctionName = "GetFullPathNameW()")
-                    )
-                }
+    ShortArray(MAX_PATH).usePinned { pin ->
+        val len = GetFullPathNameW(path, MAX_PATH, pin.addressOf(0).reinterpret(), null).toInt()
+        if (len != 0) {
+            return pin.get().toKStringFromUtf16(len)
+        } else {
+            when (val errno = errno) {
+                ENOTDIR -> return@memScoped path
+                EACCES -> return@memScoped path // permission denied
+                ENOENT -> return@memScoped path // no such file
+                else -> throw IllegalArgumentException(
+                    "Invalid path($errno): $path",
+                    cause = PosixException.forErrno(posixFunctionName = "GetFullPathNameW()")
+                )
             }
         }
-    } finally {
-        println("getFullPathName finished")
     }
 }
 
@@ -250,7 +245,6 @@ internal actual class MiraiFileImpl actual constructor(
 //            )
 //        return PosixFileInstanceOutput(handle)
 //
-        println(absolutePath)
         val handle = CreateFileW(
             absolutePath,
             GENERIC_WRITE,
@@ -289,22 +283,17 @@ internal class WindowsFileInput(private val file: HANDLE) : Input() {
     override fun fill(destination: Memory, offset: Int, length: Int): Int {
         if (file == INVALID_HANDLE_VALUE) return 0
 
-        println("fill: ${destination.pointer}, $offset, $length")
         memScoped {
             val n = alloc<DWORDVar>()
             if (ReadFile(file, destination.pointer + offset, length.convert(), n.ptr, null) == FALSE) {
-                println("ERR! LastErr= ${GetLastError()}")
                 throw PosixException.forErrno(posixFunctionName = "ReadFile()").wrapIO()
             }
 
-            println("LastErr= ${GetLastError()}")
-            println("${n.value}, ${n.value.convert<UInt>().toInt()}")
             return n.value.convert<UInt>().toInt()
         }
     }
 
     override fun closeSource() {
-        println("closing")
         if (closed) return
         closed = true
 
